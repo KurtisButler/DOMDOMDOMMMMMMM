@@ -19,15 +19,31 @@ document.addEventListener("DOMContentLoaded", function () {
     square.addEventListener("mouseover", showID);
     square.addEventListener("mouseout", hideID);
     square.addEventListener("click", changeColor);
-    square.addEventListener("dblclick", removeSquare)
+    // square.addEventListener("dblclick", removeSquare);
+
+    square.addEventListener("dblclick", function () {
+    if (square.id % 2 === 0) {
+      if (square.nextSibling === null) {
+        alert("Nothing after square to remove");
+      } else {
+        container.removeChild(square.nextSibling);
+      }
+      console.log("even");
+    } else {
+      if (square.previousSibling === null) {
+        alert("Nothing before square to remove");
+      } else {
+        console.log("odd");
+        container.removeChild(square.previousSibling);
+      }
+    }
   });
 
- 
+  });
 
- 
   function showID() {
     let div = document.getElementById(this.id);
-    console.log(div)
+    console.log(div);
     div.innerText = this.id;
   }
 
@@ -36,38 +52,29 @@ document.addEventListener("DOMContentLoaded", function () {
     div.innerText = "";
   }
 
-  let myColors = [
-    "red",
-    "yellow",
-    "pink",
-    "green",
-    "purple",
-  ];
+  let myColors = ["red", "yellow", "pink", "green", "purple"];
 
   function changeColor() {
     let num = Math.floor(Math.random() * myColors.length);
     let div = document.getElementById(this.id);
-    div.style.backgroundColor = myColors[num];}
+    div.style.backgroundColor = myColors[num];
+  }
 
-
-    container.addEventListener('dblclick', function () {
-     
-        if (container.id % 2 === 0) {
-          if (container.nextSibling === null) {
-            alert('Nothing after square to remove');
-          } else {
-            square.removeChild(container.nextSibling);
-          }
-          console.log('even');
-        } else {
-          if (container.previousSibling === null) {
-            alert('Nothing before square to remove');
-          } else {
-            console.log('odd');
-            square.removeChild(container.previousSibling);
-          }
-        }
-      })
-   
-
-})
+  // square.addEventListener("dblclick", function () {
+  //   if (square.id % 2 === 0) {
+  //     if (square.nextSibling === null) {
+  //       alert("Nothing after square to remove");
+  //     } else {
+  //       container.removeChild(square.nextSibling);
+  //     }
+  //     console.log("even");
+  //   } else {
+  //     if (square.previousSibling === null) {
+  //       alert("Nothing before square to remove");
+  //     } else {
+  //       console.log("odd");
+  //       container.removeChild(square.previousSibling);
+  //     }
+  //   }
+  // });
+});
